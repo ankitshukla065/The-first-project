@@ -1,0 +1,8 @@
+.navbar-secondary {height: 30px !important;}
+.carousel-column { padding-top:45px; max-height: 310px;}
+.carousel-image { height: 320px; width: 555px;}
+.join-form{ padding-top: 50px;}
+.main-body { padding-top: 90px;}
+.input-append .btn.dropdown-toggle {
+    float: none;
+}
