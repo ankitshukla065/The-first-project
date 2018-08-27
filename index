@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { sales } from './data';
+import DataGrid, {
+  Column,
+  FilterRow,
+  Grouping,
+  GroupPanel,
+  MasterDetail,
+  Pager,
+  Paging,
+  Selection,
+  Editing,
+  Scrolling
+} from 'devextreme-react/ui/data-grid';
+import { getList } from './datastore'
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      columns: []
+    }
+  }
+  async componentDidMount() {
+    this.setState({
+      columns: [
+        {
+          dataField: 'orderId',
+          caption: 'order Id'
+        },
+        {
+          dataField: 'country',
+          caption: 'country'
+        },
+        {
+          dataField: 'date',
+          caption: 'date'
+        },
+        {
+          dataField: 'amount',
+          caption: 'amount'
+        },
+      ]
+    });
+    // let data = await getList.load();
+    // this.setState({ data });
+  }
+
+  render() {
+    if (this.state.columns.length === 0) return null;
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <DataGrid dataSource={getList} allowColumnReordering={true}>
+          <Selection mode="single" />
+          <Column columns={this.state.columns} />
+          <Editing allowUpdating={true} mode='form' />
+          <Scrolling mode='infinite' />
+        </DataGrid>
+      </div>
+    );
+  }
+}
+
+export default App;
