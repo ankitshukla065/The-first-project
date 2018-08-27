@@ -1,0 +1,16 @@
+import CustomStore from 'devextreme/data/custom_store';
+import axios from 'axios';
+
+export const getList = new CustomStore({
+    load: async function () {
+        let res = await axios.get('http://localhost:5000/testdata')
+        return {
+            data: res.data,
+            totalCount: res.data.length
+        };
+
+    },
+    update: function (document) {
+        axios.put('http://localhost:5000/testdata', { data: document });
+    }
+});
